@@ -12,35 +12,34 @@ namespace Slab5
 {
     public partial class Form1 : Form
     {
-        Change ch;
+        IRSAEncryptor encryptor;
 
-        public Form1()
+        public Form1(IRSAEncryptor en)
         {
             InitializeComponent();
             encrypEnable();
+            encryptor = en;
         }        
 
         private void button2_Click(object sender, EventArgs e)
         {
-            textBox2.Text = ch.encryp(textBox1.Text);
+            textBox2.Text = encryptor.Encryp(textBox1.Text);
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            ch = new Change();
-
             if (radioButton1.Checked)
-            {                
-                ch.CreateKey();
-                gloKeytBox.Text = ch.glKey.ToString();
-                prKeytBox.Text = ch.prKey.ToString();
-                puKeytBox.Text = ch.pubKey.ToString();
+            {
+                encryptor.CreateKey();
+                gloKeytBox.Text = encryptor.GlobalKey.ToString();
+                prKeytBox.Text = encryptor.PrivateKey.ToString();
+                puKeytBox.Text = encryptor.PublicKey.ToString();
             }
             else
             {
-                ch.glKey = Int32.Parse(gloKeytBox.Text);
-                ch.prKey = Int32.Parse(prKeytBox.Text);
-                ch.pubKey = Int32.Parse(puKeytBox.Text);
+                encryptor.GlobalKey = Int32.Parse(gloKeytBox.Text);
+                encryptor.PrivateKey = Int32.Parse(prKeytBox.Text);
+                encryptor.PublicKey = Int32.Parse(puKeytBox.Text);
             }
 
             encrypEnable(true);
@@ -48,7 +47,7 @@ namespace Slab5
 
         private void button3_Click(object sender, EventArgs e)
         {
-            textBox2.Text = ch.decryp(textBox1.Text);
+            textBox2.Text = encryptor.Decryp(textBox1.Text);
         }
 
         private void radioButton1_CheckedChanged(object sender, EventArgs e)

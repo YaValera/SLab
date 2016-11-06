@@ -48,6 +48,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Change.cs" />
+    <Compile Include="IRSAEncryptor.cs" />
     <Compile Include="EncrypRSA.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
